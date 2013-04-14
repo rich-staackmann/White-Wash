@@ -6,6 +6,7 @@ public class PlayerShoot : MonoBehaviour {
 	public WinCondition winScript;
 	Camera c;
 	RaycastHit hit;
+	public int numDetonators = 2;
 	int gunType = 1; //1 is for gun, 2 is for detonator
 	// Use this for initialization
 	void Start () 
@@ -26,12 +27,17 @@ public class PlayerShoot : MonoBehaviour {
 		if(Input.GetButtonDown("Fire1") && gunType == 1)
 		{
 			rayShoot();
+			audio.Play();
 		}
 		
 		if(Input.GetButtonDown("Fire1") && gunType == 2)
-		{
-			GameObject theBullet =	(GameObject)Instantiate(bullet,c.transform.position + c.transform.forward,c.transform.rotation);
-			theBullet.rigidbody.AddForce(c.transform.forward * 35.0f,ForceMode.Impulse);
+		{	
+			if(numDetonators > 0)
+			{
+				GameObject theBullet =	(GameObject)Instantiate(bullet,c.transform.position + c.transform.forward,c.transform.rotation);
+				theBullet.rigidbody.AddForce(c.transform.forward * 35.0f,ForceMode.Impulse);
+				numDetonators--;
+			}
 		}
 	}
 	
@@ -45,5 +51,10 @@ public class PlayerShoot : MonoBehaviour {
 					winScript.decrementEnemies();
 				}
 		}
+	}
+	
+	void OnGUI()
+	{
+		GUI.Box(new Rect(10,Screen.height/2,100,30), "Detonators: " + numDetonators.ToString());
 	}
 }

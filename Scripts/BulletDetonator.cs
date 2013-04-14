@@ -31,6 +31,7 @@ public class BulletDetonator : MonoBehaviour {
 			col.gameObject.tag = "Dead";
 			winScript.decrementEnemies();
 			Instantiate(fireEffect, col.transform.position,col.transform.rotation);
+			Destroy(col.gameObject);
 		}
 	}
 	

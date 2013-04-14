@@ -1,9 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class WinCondition : MonoBehaviour {
-	public int numEnemies = 8;
-	bool won = false;
+public class HUD : MonoBehaviour {
+	bool isPaused = false;
 	// Use this for initialization
 	void Start () {
 	
@@ -12,25 +11,31 @@ public class WinCondition : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if(numEnemies <=0)
+		if(Input.GetKeyDown(KeyCode.P) && isPaused == false)
 		{
-			won = true;	
+			Time.timeScale = 0.0f;
 			Screen.lockCursor = false;
+			isPaused = true;
+			return;
 		}
-	}
-	
-	public void decrementEnemies()
-	{
-		numEnemies--;
+		
+		if(Input.GetKeyDown(KeyCode.P) && isPaused == true)
+		{
+			Time.timeScale = 1.0f;
+			Screen.lockCursor = true;
+			isPaused = false;
+			return;
+		}
 	}
 	
 	void OnGUI () 
 	{
-		if(won)
+		if(isPaused)
 		{
 			// Make a background box
-			GUI.Box(new Rect(10,10,100,120), "You Won!");
-			
+			GUI.Box(new Rect(10,10,100,120), "Pause Menu");
+
+			// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 			if(GUI.Button(new Rect(20,40,80,20), "Level 1")) 
 			{
 				Application.LoadLevel(1);
@@ -48,4 +53,6 @@ public class WinCondition : MonoBehaviour {
 			}
 		}
 	}
+	
+	
 }
