@@ -9,4 +9,4 @@ Crouching and sprinting were implenented for the character. A gun was added, bas
 were added. Finally more levels and basic AI were implemented.
 
 The models and level were done by myself in Blender. All other assets are free with Unity.
-The font was Wet Paint from dafont.com.
+The font was Wet Paint from dafont.com. The sounds were written and produced by Ove Melaa (Omsofware@hotmail.com).
