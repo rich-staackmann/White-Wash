@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
+//This is a simple script to implement raycast and physics based projectiles
+//
 public class PlayerShoot : MonoBehaviour {
 	public GameObject bullet;
 	public WinCondition winScript;
@@ -27,7 +29,7 @@ public class PlayerShoot : MonoBehaviour {
 		if(Input.GetButtonDown("Fire1") && gunType == 1)
 		{
 			rayShoot();
-			audio.Play();
+			audio.Play(); //play the attached gunshot sound
 		}
 		
 		if(Input.GetButtonDown("Fire1") && gunType == 2)
@@ -36,25 +38,25 @@ public class PlayerShoot : MonoBehaviour {
 			{
 				GameObject theBullet =	(GameObject)Instantiate(bullet,c.transform.position + c.transform.forward,c.transform.rotation);
 				theBullet.rigidbody.AddForce(c.transform.forward * 35.0f,ForceMode.Impulse);
-				numDetonators--;
+				numDetonators--; //decrease detonator inventory
 			}
 		}
 	}
 	
-	void rayShoot()
+	void rayShoot() //a raycast based shooting method
 	{
 		if(Physics.Raycast(c.transform.position,c.transform.forward, out hit, 100))
 		{
 				if(hit.collider.name ==("Enemy"))
 				{
 					Destroy(hit.collider.gameObject);
-					winScript.decrementEnemies();
+					winScript.decrementEnemies(); //the winScript keeps tack of our victory condition(kill all enemies) so we call it's decrementEnemeis function
 				}
 		}
 	}
 	
 	void OnGUI()
 	{
-		GUI.Box(new Rect(10,Screen.height/2,100,30), "Detonators: " + numDetonators.ToString());
+		GUI.Box(new Rect(10,Screen.height/2,100,30), "Detonators: " + numDetonators.ToString()); //numbers of detonators available
 	}
 }

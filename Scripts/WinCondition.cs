@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections;
+//
+//this script defines the win condition(kill all targets)
+//
 
 public class WinCondition : MonoBehaviour {
 	public int numEnemies = 8;

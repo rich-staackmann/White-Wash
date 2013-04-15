@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+//the purpose of this script is to draw a crosshair image at the center of the screen
+
+
 public class Crosshair : MonoBehaviour {
 	public Texture2D crosshair;
 	// Use this for initialization

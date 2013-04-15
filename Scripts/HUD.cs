@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+//This script takes care of our pause menu
+//
+
 public class HUD : MonoBehaviour {
 	bool isPaused = false;
 	// Use this for initialization
@@ -40,12 +43,13 @@ public class HUD : MonoBehaviour {
 			{
 				Application.LoadLevel(1);
 			}
+			//makes the second button, which loads level 2
 			if(GUI.Button(new Rect(20,70,80,20), "Level 2")) 
 			{
 				Application.LoadLevel(2);
 			}
 
-			// Make the second button.
+			// Make the third button. Quit
 			if(GUI.Button(new Rect(20,100,80,20), "Quit" +
 				"")) 
 			{

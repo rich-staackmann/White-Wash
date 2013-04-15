@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+//this script implements standard FPS movement using a Character Controller component
+//
 
 [RequireComponent (typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour {
@@ -13,6 +15,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float sprintSpeed = 1.5f;
 	bool isCrouched = false;
 	GameObject gun;
+	
 	// Use this for initialization
 	void Start () {
 		Screen.lockCursor = true;
@@ -38,6 +41,11 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		else
 			; 
+		
+		/* The rotation, movement, and jump code come from a tutorial by Quill18 creates. I have implemented transform based movement in a 3rd person tank game experiment
+		 * However, the tutorials insight into Euler angle rotation was quite helpful here.
+		 * I just wanted to give full disclosure
+		 */
 		//rotation
 		float rotLeftRight = Input.GetAxis("Mouse X") * rotScalar;
 		verticalRotation -= Input.GetAxis("Mouse Y") * rotScalar; //euler rotation goes from 0 to 360 degrees, in order to clamp the rotation we store the rotation change in a variable
